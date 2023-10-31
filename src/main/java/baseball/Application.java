@@ -41,11 +41,6 @@ public class Application {
             }
         }
 
-        // if(numList.get(0) == numList.get(1) || numList.get(0) == numList.get(2) || numList.get(1) == numList.get(2)){
-        //     System.out.println("오류발생 : [서로 같은 숫자가 포함되어 있음.]");
-        //     throw new IllegalArgumentException("알맞은 값을 입력해주세요");
-        // }
-
         System.out.println("자른숫자 : " + numList);
 
         return numList;
