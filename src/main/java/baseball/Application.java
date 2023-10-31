@@ -1,8 +1,11 @@
 package baseball;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
@@ -19,11 +22,29 @@ public class Application {
         System.out.print("숫자를 입력해주세요 : ");
         String playerNumString = Console.readLine();
 
+        // 예외처리
+        if(!(playerNumString.length() == 3)){
+            System.out.println("오류발생 : [3자리 이하]");
+            throw new IllegalArgumentException("알맞은 값을 입력해주세요");
+        } else if(!Pattern.matches("^[0-9]*$", playerNumString)){
+            System.out.println("오류발생 : [숫자 외]");
+            throw new IllegalArgumentException("알맞은 값을 입력해주세요");
+        } 
+
         List<Integer> numList = new ArrayList<>();
         
         for(int i = 0; i<3; i++){
             numList.add(Integer.parseInt(playerNumString.substring(i, i+1)));
+            if(numList.contains(numList.get(i))){
+                System.out.println("오류발생 : [서로 같은 숫자가 포함되어 있음.]");
+                throw new IllegalArgumentException("알맞은 값을 입력해주세요");
+            }
         }
+
+        // if(numList.get(0) == numList.get(1) || numList.get(0) == numList.get(2) || numList.get(1) == numList.get(2)){
+        //     System.out.println("오류발생 : [서로 같은 숫자가 포함되어 있음.]");
+        //     throw new IllegalArgumentException("알맞은 값을 입력해주세요");
+        // }
 
         System.out.println("자른숫자 : " + numList);
 
